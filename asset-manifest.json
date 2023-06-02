@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/instagram/static/js/main.b7da687f.js",
+    "index.html": "/instagram/index.html",
+    "main.b7da687f.js.map": "/instagram/static/js/main.b7da687f.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b7da687f.js"
+  ]
+}
