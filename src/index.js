@@ -1,17 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { initializeDb} from './database.js'
+import Bio from './modules/bio/Bio.js'
+import addBioEventListeners from './modules/bio/events.js';
+import Gallery from './modules/gallery/Gallery.js'
+import { addGalleryEventListeners, addImagesToGallery }  from './modules/gallery/events.js'
+import Nav from './modules/nav/Nav.js'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const App = async () => {
+  return `
+    ${Nav()}
+    <div class="container">
+      ${await Bio()}
+      ${Gallery()}
+    </div>
+  `
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+initializeDb.onsuccess = async () => {
+  document.getElementById('root').innerHTML = await App()
+  addBioEventListeners()
+  addGalleryEventListeners()
+  addImagesToGallery()
+}
